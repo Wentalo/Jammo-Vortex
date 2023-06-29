@@ -306,7 +306,7 @@ namespace UnityTutorial.PlayerControl
                 currentHitObject = null;
             }
 
-            Debug.Log(m_Grounded);
+            //Debug.Log(m_Grounded);
             m_Grounded = false;
             m_Animator.SetFloat(m_ZvelHash, m_PlayerRigidbody.velocity.y);
             SetAnimationGrounding();

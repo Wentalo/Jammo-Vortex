@@ -37,6 +37,7 @@ public class GameEndings : MonoBehaviour
         }
         else if (m_IsPlayerCaught)
         {
+            Debug.Log("hola");
             EndLevel(true);
         }
         

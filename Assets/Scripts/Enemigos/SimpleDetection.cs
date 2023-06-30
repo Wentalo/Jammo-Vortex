@@ -23,7 +23,6 @@ public class SimpleDetection : MonoBehaviour
     {
         if (other.transform == player)
         {
-            Debug.Log("No pillado");
             m_isPlayerInRange = false;
         }
     }
@@ -34,24 +33,25 @@ public class SimpleDetection : MonoBehaviour
 
         if (m_isPlayerInRange)
         {
-            Debug.Log("Pillado");
-
+            
             Vector3 direction = player.position - transform.position + Vector3.up;
-            direccionJammoEnemigo = direction;
+            //direccionJammoEnemigo = direction;
             Ray ray = new Ray(transform.position, direction);
             RaycastHit raycastHit;
 
+            //Se ha de hacer con raycast porque si no puede atravesar las paredes
             if (Physics.Raycast(ray, out raycastHit))
             {
                 if (raycastHit.collider.transform == player)
                 {
                     gameEnding.CaughtPlayer();
-                    Debug.Log("Pillado");
                 }
             }        
+            
         }
     }
 
+    /*
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -59,4 +59,5 @@ public class SimpleDetection : MonoBehaviour
         Debug.DrawRay(transform.position, direccionJammoEnemigo , Color.blue);
         // Gizmos.DrawWireSphere(origin + direction * currentHitDistance, cameraCollisionRadius);
     }
+    */
 }

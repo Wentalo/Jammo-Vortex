@@ -7,6 +7,9 @@ public class Teleport : MonoBehaviour
     public Transform salida;
     public GameObject player;
 
+    public AudioSource teleportAudio;
+    bool m_HasAudioPlayed;
+
     public float fadeDuration = 0.05f;
     public float displayImageDuration = 0.3f;
     public CanvasGroup teleportBackgroundImageCanvasGroup;
@@ -26,6 +29,12 @@ public class Teleport : MonoBehaviour
     {
         if (m_FadeIn)
         {
+            if (!m_HasAudioPlayed)
+            {
+                teleportAudio.Play();
+                m_HasAudioPlayed = true;
+            }
+
             if (teleportBackgroundImageCanvasGroup.alpha < 1)
             {
                 teleportBackgroundImageCanvasGroup.alpha += Time.deltaTime;
@@ -34,6 +43,7 @@ public class Teleport : MonoBehaviour
                     m_FadeIn = false;
                     m_FadeOut = true;
                     player.transform.position = new Vector3(salida.position.x, salida.position.y, salida.position.z);
+                    m_HasAudioPlayed = false;
                 }
             }
         }
